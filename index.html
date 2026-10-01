@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시멘트 제조 협회 통계시스템 웹 개편 — 제안 자료 (위시켓 158558)</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="위시켓 158558 제안 자료 — 웹 제안서와 시멘트 통계 포털 프로토타입(27개 화면).">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --red-700:#DC2828; --red-800:#C00000; --coral:#FF675C; --coral-300:#FF9A92;
+  --coral-150:#FFCBC9; --coral-100:#FFEDEC; --coral-50:#FFF6F5;
+  --ink-900:#000; --ink-700:#3F3F3F; --ink-600:#595959; --ink-500:#5F5F5F;
+  --line:#DCDCDC; --line-soft:#EAEAEA; --surface-1:#F9F9F9; --white:#FFF;
+  --f:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,
+      'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  --e:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%; color-scheme:light;}
+body{margin:0; min-height:100vh; background:
+    radial-gradient(1000px 420px at 86% -12%, rgba(220,40,40,.10), transparent 62%),
+    radial-gradient(720px 360px at 2% 108%, rgba(255,103,92,.11), transparent 60%),
+    linear-gradient(180deg,var(--coral-50),var(--surface-1) 60%);
+  color:var(--ink-700); font-family:var(--f); font-size:16px; line-height:1.7;
+  letter-spacing:-.01em; word-break:keep-all; -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column;}
+h1,h2,h3{color:var(--ink-900); margin:0; font-weight:800; letter-spacing:-.03em; line-height:1.25;}
+p{margin:0;}
+a{color:var(--red-800); text-decoration:none;}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em;
+  background:var(--coral-100); padding:1px 6px; border-radius:5px; color:var(--red-800);}
+:focus-visible{outline:3px solid var(--red-700); outline-offset:3px; border-radius:6px;}
+.wrap{width:100%; max-width:1080px; margin:0 auto; padding:0 clamp(18px,4vw,40px);}
+main{flex:1 0 auto; padding:clamp(44px,8vw,92px) 0 clamp(40px,6vw,72px);}
+
+.eyebrow{display:inline-flex; align-items:center; gap:9px; background:var(--white);
+  border:1px solid var(--coral-150); color:var(--red-800); font-size:12.5px; font-weight:800;
+  padding:7px 14px; border-radius:999px; box-shadow:0 1px 2px rgba(0,0,0,.06); margin-bottom:20px;}
+.eyebrow i{width:7px; height:7px; border-radius:50%; background:var(--red-700); flex:0 0 auto;}
+h1{font-size:clamp(26px,4.6vw,44px); letter-spacing:-.04em;}
+h1 em{font-style:normal; color:var(--red-800);}
+.lead{margin-top:16px; font-size:clamp(15px,1.7vw,17.5px); color:var(--ink-600); max-width:62ch;}
+
+.facts{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:16px;
+  overflow:hidden; margin:30px 0 clamp(30px,4vw,44px);}
+.facts div{background:var(--white); padding:18px 20px;}
+.facts span{display:block; font-size:11px; font-weight:800; letter-spacing:.09em;
+  color:var(--ink-500); text-transform:uppercase; margin-bottom:8px;}
+.facts b{display:block; font-size:clamp(17px,2.1vw,21px); font-weight:800; color:var(--ink-900);
+  letter-spacing:-.03em; white-space:nowrap;}
+.facts b i{display:block; font-style:normal; font-size:.6em; font-weight:700; color:var(--ink-600);
+  margin:5px 0 0; white-space:normal; line-height:1.4;}
+
+.cards{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(16px,2.2vw,24px);}
+a.card{display:flex; flex-direction:column; gap:14px; background:var(--white); border:1px solid var(--line);
+  border-radius:22px; padding:clamp(24px,3vw,34px); box-shadow:0 1px 2px rgba(0,0,0,.06);
+  transition:transform .3s var(--e),box-shadow .3s,border-color .3s; min-height:100%;}
+a.card:hover{transform:translateY(-5px); box-shadow:0 18px 48px rgba(0,0,0,.13);
+  border-color:var(--coral-150);}
+a.card .ic{width:52px; height:52px; border-radius:16px; display:grid; place-items:center;
+  background:var(--coral-100); color:var(--red-800); flex:0 0 auto;}
+a.card.app .ic{background:#E8EDFE; color:#1E44C4;}
+a.card .tag{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.09em;
+  color:var(--ink-500); text-transform:uppercase;}
+a.card h2{font-size:clamp(19px,2.3vw,24px);}
+a.card p{font-size:14.6px; color:var(--ink-600);}
+a.card ul{margin:0; padding:0; list-style:none; display:grid; gap:8px;}
+a.card li{position:relative; padding-left:17px; font-size:14px; color:var(--ink-600);}
+a.card li::before{content:''; position:absolute; left:2px; top:10px; width:6px; height:6px;
+  border-radius:50%; background:var(--red-700);}
+a.card.app li::before{background:#2F5BEA;}
+a.card .go{margin-top:auto; display:inline-flex; align-items:center; gap:8px; font-size:14.5px;
+  font-weight:800; color:var(--red-800); padding-top:6px;}
+a.card.app .go{color:#1E44C4;}
+a.card.app:hover{border-color:#C9D5FD;}
+.shot{margin:calc(-1*clamp(24px,3vw,34px)) calc(-1*clamp(24px,3vw,34px)) 4px; height:148px;
+  border-radius:21px 21px 0 0; overflow:hidden; background:#E8EDFE;}
+.shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--e);}
+a.card:hover .shot img{transform:scale(1.04);}
+.quick{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+.quick a{display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#1E44C4;
+  background:#F4F6FF; border:1px solid #C9D5FD; padding:6px 12px; border-radius:999px;}
+.quick a:hover{background:#E8EDFE;}
+a.card:hover .go svg{transform:translateX(4px);}
+a.card .go svg{transition:transform .24s var(--e);}
+svg{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.9;
+  stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto;}
+svg.s{width:17px; height:17px;}
+
+.note{margin-top:clamp(28px,4vw,42px); background:var(--white); border:1px solid var(--line);
+  border-left:4px solid var(--red-700); border-radius:14px; padding:20px 24px;}
+.note > b{display:block; color:var(--ink-900); font-size:14.6px; margin-bottom:7px;}
+.note p b{display:inline; color:var(--ink-900); font-size:inherit; margin:0;}
+.note p{font-size:14px; color:var(--ink-600);}
+.note + .note{margin-top:14px;}
+
+footer{flex:0 0 auto; border-top:1px solid var(--line); background:rgba(255,255,255,.65);
+  padding:22px 0; font-size:12.8px; color:var(--ink-500);}
+footer .wrap{display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:space-between;}
+
+@media (max-width:860px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .cards{grid-template-columns:minmax(0,1fr);}
+}
+@media (max-width:420px){ .facts{grid-template-columns:minmax(0,1fr);} }
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+@media print{
+  body{background:#fff;}
+  a.card{break-inside:avoid; box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow"><i aria-hidden="true"></i>위시켓 158558 · 제안 자료</span>
+    <h1>시멘트 제조 협회<br><em>통계시스템 웹 개편</em> 제안</h1>
+    <p class="lead">아래에서 웹 제안서와 서비스 화면을 확인하실 수 있습니다.
+      두 자료 모두 별도 설치 없이 브라우저에서 바로 열 수 있으며, PC·태블릿·휴대폰에서 확인 가능합니다.</p>
+
+    <div class="facts">
+      <div><span>제안 금액</span><b>75,000,000<i>원 · 부가세 별도</i></b></div>
+      <div><span>수행 기간</span><b>145<i>일 · 2026-11-16 ~ 2027-04-09 · 발주 150일 대비 5일 여유</i></b></div>
+      <div><span>총 투입량</span><b>300.0<i>MD · 10.00 MM · 8명</i></b></div>
+      <div><span>화면 구성</span><b>27<i>개 · 회원사 12개 · 협회 15개</i></b></div>
+    </div>
+
+    <div class="cards">
+      <a class="card doc" href="proposal/">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>
+        </span>
+        <div>
+          <span class="tag">자료 01</span>
+          <h2>웹 제안서</h2>
+        </div>
+        <p>제출 제안서의 핵심을 10개 섹션과 부록으로 정리했습니다. 과제 진단과 핵심 설계부터
+          기간·예산, 일정·인력, 정량 인수 기준과 유지보수까지 빠르게 확인하실 수 있습니다.</p>
+        <ul>
+          <li>소스코드가 없는 현행 시스템의 집계 규칙을 복원하고, 새 시스템이 뽑은 숫자가 예전 숫자와 같음을 대조로 증명하는 방법</li>
+          <li>공고의 12개 상위 기능군을 모두 포함한 145일·300.0 MD — 전체 범위 추정 340~470 MD의 하한 대비 88.2%와 조정 내역</li>
+          <li>미확정 4건(과거 자료 이관 · 양식 재현 · 외부 제공처 · 회원사 연계)의 기본 가정과 증분 단가 분리</li>
+          <li>투입 인력 8명, 단계별 승인 게이트 5회, 인수 기준 18항목의 측정 조건과 합격선, 무상 하자보수 6개월</li>
+        </ul>
+        <span class="go">웹 제안서 열기 <svg class="s" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card app" href="prototype/">
+        <span class="shot" aria-hidden="true"><img src="prototype/assets/cement-dashboard.jpg" alt="" decoding="async"></span>
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        </span>
+        <div>
+          <span class="tag">자료 02</span>
+          <h2>시멘트 통계 포털 화면</h2>
+        </div>
+        <p>제안한 서비스의 <b>27개 화면</b>을 직접 조작해 보실 수 있습니다. 회원사 자료 입력부터 협회 확정·마감, 통계 조회까지
+          실제 업무 흐름대로 이어지며, 회사명·공장·인물·수치는 <b>모두 가상의 예시</b>입니다.</p>
+        <ul>
+          <li>처음에는 <b>로그인 화면</b>이 열립니다. 업무 영역(회원사·협회)을 고르고 「체험 계정」을 누르면 입력란이 채워집니다</li>
+          <li>엑셀처럼 쓰는 대량 입력표와 <b>엑셀(.xlsx)·CSV 업로드</b> — 전 행을 검증하고 한 행이라도 오류면 아무것도 반영하지 않습니다</li>
+          <li>제출 → 보완 요청 → 확정 → 마감의 상태 흐름, 마감 후 정정은 <b>새 발행 버전</b>으로 남깁니다</li>
+          <li>화면·엑셀·보고서·지도가 <b>같은 집계 서비스</b>를 사용해 어디서 뽑아도 같은 숫자가 나옵니다</li>
+          <li>다른 회원사 자료 요청 차단, 구성 회원사 3개사 미만 지역 합계 비공개, 시·군·구 확대와 월별 재생 지도</li>
+        </ul>
+        <span class="go">서비스 화면 열기 <svg class="s" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+
+    <div class="quick" aria-label="바로 가기">
+      <a href="prototype/#/m/login">회원사 로그인 화면 바로 열기</a>
+      <a href="prototype/#/a/login">협회 관리자 로그인 화면 바로 열기</a>
+    </div>
+
+    <div class="note">
+      <b>이 주소에는 검색 노출 방지 설정이 적용되어 있지만 별도의 접근 제한은 없습니다.</b>
+      <p>검색 결과에 노출되지 않도록 모든 페이지에 <code>noindex</code>를 적용했습니다. 다만 주소를 아는 사람은 누구나 열 수 있으므로
+        <b>발주처 담당자에게만</b> 전달해 주세요.</p>
+    </div>
+
+    <div class="note">
+      <b>서비스 화면에 표시되는 회사·공장·인물·통계 수치는 모두 가상의 예시입니다.</b>
+      <p>회원사와 공장, 생산·출하·재고 수치는 <b>시연을 위해 만든 가상의 자료</b>이며 실제 회원사와 관계가 없습니다. 화면의 사진도 화면용으로 생성한 이미지입니다.
+        화면에서 변경한 값과 로그인 상태는 <b>현재 브라우저에만</b> 저장되며, 다른 사람의 화면이나 서버에는 반영되지 않습니다.
+        처음 상태로 돌리려면 로그인 화면의 <b>「체험 데이터 초기화」</b>를 눌러 주세요.
+        로그인은 브라우저 안에서만 동작하는 체험 계정이며, 메일 발송·외부 데이터 수집은 화면 흐름만 재현하고 실제로 처리되지 않습니다.</p>
+    </div>
+
+    <div class="note">
+      <b>화면에 보이는 설정값 중 일부는 협의 전 가정값입니다.</b>
+      <p>정확한 개발 범위는 웹 제안서를 기준으로 확인해 주세요. 급변 경고 기준(전월 ±30%, 전년 동월 ±40%, 차이 800톤 이상)과
+        소수 지역 비공개 임계값(3개사)은 <b>시연용 설정값</b>이며 착수 1단계에서 협회와 확정합니다.
+        이메일 외 알림 채널(알림톡·SMS), 회원사 ERP 직접 연동, 모바일 앱, 다국어, 통계 예측 모델, 맞춤 보고서의 드래그 배치 편집기,
+        지도 월별 변화의 동영상 내보내기는 <b>1차 범위에 포함되지 않습니다.</b>
+        각 항목의 근거는 <b>웹 제안서 「기간·예산」·「개발 범위」 섹션</b>에 있습니다.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>시멘트 제조 협회 통계시스템 웹 개편 제안 · 위시켓 158558</span>
+    <span>제안 금액과 기간은 제출 제안서를 기준으로 합니다.</span>
+  </div>
+</footer>
+
+</body>
+</html>
