@@ -128,6 +128,8 @@ code{font-family:var(--mono); font-size:.9em; background:var(--bg-alt);
   font:inherit; font-size:12px; font-weight:400; cursor:pointer; transition:.22s;
 }
 .btn-i:hover{border-color:var(--key); color:var(--key-strong)}
+.btn-i.main-link{border-color:var(--key-edge); color:var(--key-strong); font-weight:700}
+.btn-i.main-link:hover{background:var(--key-wash)}
 svg.ic{width:15px;height:15px;flex:0 0 auto;fill:none;stroke:currentColor;
   stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
@@ -143,6 +145,11 @@ svg.ic{width:15px;height:15px;flex:0 0 auto;fill:none;stroke:currentColor;
   mask-image:linear-gradient(200deg,#000 0%,transparent 62%);
 }
 .hero-in{position:relative}
+.hero-main{display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 16px 0 12px;
+  margin-bottom:28px; border:1px solid var(--key-edge); border-radius:999px; background:var(--card);
+  color:var(--key-strong); font-size:13px; font-weight:700; text-decoration:none; transition:.22s}
+.hero-main:hover{background:var(--key-wash); border-color:var(--key)}
+.hero-main .ic{width:16px; height:16px}
 .hero-kick{display:flex; align-items:center; gap:11px; margin-bottom:26px}
 .hero-kick span{font-size:11.5px; font-weight:700; letter-spacing:.14em;
   color:var(--key-strong); text-transform:uppercase}
@@ -622,7 +629,7 @@ h1,h2,h3,.gc-t,.sec-lead,.hero-lead{word-break:keep-all; overflow-wrap:break-wor
   .hero-meta > div{padding:11px 12px}
   .gantt{padding:13px 12px}
   .cards{gap:9px}
-  .topbar,.progress,.totop,.hero-tick,.tb-act{display:none !important}
+  .topbar,.progress,.totop,.hero-tick,.tb-act,.hero-main{display:none !important}
   .rv{opacity:1 !important; transform:none !important; transition:none !important}
   .hero{background:#fff; color:#000; border-bottom:2.5pt solid var(--key);
     padding-top:0}

@@ -525,6 +525,9 @@ body.auth-view{background:#101922}
 .auth-eyebrow{font-size:12px;color:#dae6f0;font-weight:700;letter-spacing:.08em}
 .auth-page .lg-form{background:var(--panel);padding:44px clamp(26px,4vw,66px);align-items:center}
 .auth-page .lg-box{max-width:500px}
+.to-main{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px 0 10px;margin-bottom:22px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--key-d);font-size:13px;font-weight:700;text-decoration:none;transition:.15s}
+.to-main:hover{border-color:var(--key);background:var(--key-ll)}
+.to-main .i{width:16px;height:16px}
 .auth-brand{display:flex;align-items:center;gap:10px;margin-bottom:32px;color:var(--tx)}
 .auth-brand .bm{width:36px;height:36px}
 .auth-brand b{font-size:15px}

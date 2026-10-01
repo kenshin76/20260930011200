@@ -361,7 +361,7 @@
   function authPage(defaultSide) {
     return '<div class="login auth-page"><div class="lg-art"><img class="lg-photo" src="assets/cement-login.jpg" alt="" aria-hidden="true">' +
       '<div class="lg-in"><span class="auth-eyebrow">시멘트 통계 포털</span><h1>월간 통계 업무를<br>한곳에서 시작하세요.</h1><p>자료 입력부터 확정 통계 조회까지, 역할에 맞는 업무를 이어서 처리하세요.</p></div></div>' +
-      '<div class="lg-form"><div class="lg-box"><div class="auth-brand"><span class="bm" aria-hidden="true"><i></i><i></i><i></i></span><b>시멘트 통계 포털</b></div>' +
+      '<div class="lg-form"><div class="lg-box"><a class="to-main" href="../index.html">' + ic('back') + '<span>메인으로</span></a><div class="auth-brand"><span class="bm" aria-hidden="true"><i></i><i></i><i></i></span><b>시멘트 통계 포털</b></div>' +
       '<h2>로그인</h2><p class="auth-sub">업무 영역을 선택하고 계정 정보를 입력해 주세요.</p>' +
       '<form class="auth-form" data-auth-form><label for="loginRole">업무 영역</label><select id="loginRole" name="role" class="sel">' +
       '<option value="member"' + (defaultSide === 'member' ? ' selected' : '') + '>회원사</option><option value="assoc"' + (defaultSide === 'assoc' ? ' selected' : '') + '>협회</option></select>' +
@@ -456,7 +456,7 @@
       '<div class="mainw"><header class="top"><button class="btn-ic mnav" data-act="nav" aria-label="메뉴 열기">' + ic('menu') + '</button>' +
       '<div class="period"><span class="pd-k">작성 대상</span><b>' + U.ymLabel(D.CUR) + ' 자료</b><span class="pd-d">마감 10월 10일 · ' + deadlineText + '</span></div>' +
       (S ? '<div class="period hide-s"><span class="pd-k">우리 회사</span>' + chip(S.state) + '</div>' : '') +
-      '<div class="top-r"><button class="btn-ic" data-act="theme" aria-label="화면 테마: ' + ({ system: '시스템', light: '라이트', dark: '다크' })[pref] + '" title="테마 — ' + ({ system: '시스템', light: '라이트', dark: '다크' })[pref] + '">' + ic(pref === 'dark' ? 'eye' : 'sun') + '</button>' +
+      '<div class="top-r"><a class="btn-ic to-main-ic" href="../index.html" aria-label="제안 자료 메인으로" title="메인으로">' + ic('home') + '</a><button class="btn-ic" data-act="theme" aria-label="화면 테마: ' + ({ system: '시스템', light: '라이트', dark: '다크' })[pref] + '" title="테마 — ' + ({ system: '시스템', light: '라이트', dark: '다크' })[pref] + '">' + ic(pref === 'dark' ? 'eye' : 'sun') + '</button>' +
       '<a class="btn-ic" href="#' + (sd === 'assoc' ? '/a/noti' : '/m/status') + '" aria-label="알림">' + ic('bell') + '</a>' +
       '<button class="who" data-act="profile" aria-label="내 계정"><span class="av">' + esc(u.name.slice(0, 1)) + '</span><span class="who-t"><b>' + esc(u.name) + '</b><small>' + esc(mem ? mem.name + ' · ' + D.ROLEMAP[u.role].name : D.ROLEMAP[u.role].name) + '</small></span>' + ic('users') + '</button></div></header>' +
       '<main class="page" id="main" tabindex="-1">' + body + '</main></div><div class="scrim" data-act="nav"></div></div>';
