@@ -77,8 +77,16 @@ a.card .go{margin-top:auto; display:inline-flex; align-items:center; gap:8px; fo
   font-weight:800; color:var(--red-800); padding-top:6px;}
 a.card.app .go{color:#1E44C4;}
 a.card.app:hover{border-color:#C9D5FD;}
-.shot{margin:calc(-1*clamp(24px,3vw,34px)) calc(-1*clamp(24px,3vw,34px)) 4px; height:148px;
+.shot{display:block; position:relative; flex:0 0 auto;
+  margin:calc(-1*clamp(24px,3vw,34px)) calc(-1*clamp(24px,3vw,34px)) 4px; height:148px;
   border-radius:21px 21px 0 0; overflow:hidden; background:#E8EDFE;}
+.proposal-shot{background:radial-gradient(circle at 78% 110%,rgba(255,255,255,.24),transparent 43%),
+  linear-gradient(125deg,#A91621 0%,#D52A30 56%,#F27266 100%);}
+.proposal-shot::before{content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(135deg,transparent 0 44px,rgba(255,255,255,.12) 44px 45px);}
+.proposal-shot::after{content:""; position:absolute; width:232px; height:232px; right:8%; top:-62px;
+  border:1px solid rgba(255,255,255,.38); border-radius:50%;
+  box-shadow:0 0 0 38px rgba(255,255,255,.07),0 0 0 80px rgba(255,255,255,.04);}
 .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--e);}
 a.card:hover .shot img{transform:scale(1.04);}
 .quick{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
@@ -120,8 +128,8 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:space-
   <div class="wrap">
     <span class="eyebrow"><i aria-hidden="true"></i>위시켓 158558 · 제안 자료</span>
     <h1>시멘트 제조 협회<br><em>통계시스템 웹 개편</em> 제안</h1>
-    <p class="lead">웹 제안서와 서비스 시연 화면, 두 가지 자료를 준비했습니다.
-      별도 설치 없이 브라우저에서 바로 열리며 PC·태블릿·휴대폰에서 모두 보실 수 있습니다.</p>
+    <p class="lead">웹 제안서와 시멘트 통계 포털 프로토타입을 준비했습니다.
+      별도 설치 없이 브라우저에서 바로 확인할 수 있으며, PC·태블릿·휴대폰 화면에 맞게 표시됩니다.</p>
 
     <div class="facts">
       <div><span>제안 금액</span><b>75,000,000<i>원 · 부가세 별도</i></b></div>
@@ -132,6 +140,7 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:space-
 
     <div class="cards">
       <a class="card doc" href="proposal/index.html">
+        <span class="shot proposal-shot" aria-hidden="true"></span>
         <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>
         </span>
@@ -140,12 +149,12 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:space-
           <h2>웹 제안서</h2>
         </div>
         <p>제출 제안서의 핵심을 10개 섹션과 부록으로 정리했습니다. 과제 진단과 핵심 설계부터
-          기간·예산, 일정·인력, 인수 기준, 유지보수 계획까지 한눈에 확인하실 수 있습니다.</p>
+          기간·예산, 일정·인력, 인수 기준, 유지보수 계획까지 확인하실 수 있습니다.</p>
         <ul>
-          <li>소스코드가 없는 현행 시스템의 집계 규칙을 복원하고, 새 시스템의 집계 결과가 기존 결과와 같다는 것을 대조로 증명하는 방법</li>
+          <li>소스코드가 없는 현행 시스템의 집계 규칙을 복원하고, 지정된 과거 보고서의 대조 대상 수치와 새 시스템의 결과가 일치하는지 검증하는 방법</li>
           <li>공고의 12개 상위 기능군을 모두 담은 145일·300.0 MD 계획 — 전체 범위 추정치(340~470 MD) 하한의 88.2% 수준이며, 이에 맞춘 기능 깊이 조정 내역도 함께 제시</li>
           <li>미확정 4건(과거 자료 이관 · 양식 재현 · 외부 제공처 · 회원사 연계)은 기본 가정과 초과분의 증분 단가를 나누어 제시</li>
-          <li>투입 인력 8명, 단계별 승인 게이트 5회, 인수 기준 18개 항목의 측정 조건과 합격선, 무상 하자보수 6개월</li>
+          <li>투입 인력 8명, 단계별 승인 게이트 5회, 인수 기준 18개 항목의 측정 조건과 합격선, 무상 하자보수 6개월 제안</li>
         </ul>
         <span class="go">웹 제안서 열기 <svg class="s" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -160,12 +169,12 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:space-
           <h2>시멘트 통계 포털 화면</h2>
         </div>
         <p>제안한 서비스의 <b>27개 화면</b>을 직접 조작해 보실 수 있습니다. 회원사의 자료 입력부터 협회의 확정·마감, 통계 조회까지
-          실제 업무 순서대로 이어지며, 화면의 회사명·공장·인물·수치는 <b>모두 가상의 예시</b>입니다.</p>
+          업무 흐름을 따라 살펴볼 수 있습니다. 화면의 회사명·공장·인물·수치는 <b>모두 가상의 예시</b>입니다.</p>
         <ul>
           <li>처음에는 <b>로그인 화면</b>이 열립니다. 업무 영역(회원사·협회)을 고른 뒤 「체험 계정」 목록에서 계정을 누르면 이메일과 비밀번호가 채워지고, 「로그인」을 누르면 바로 접속됩니다</li>
           <li>엑셀처럼 쓰는 대량 입력표와 <b>엑셀(.xlsx)·CSV 업로드</b> — 업로드한 파일은 모든 행을 검증하며, 한 행이라도 오류가 있으면 전체를 반영하지 않습니다</li>
-          <li>자료는 제출 → 보완 요청 → 확정 → 마감 순서로 처리되며, 마감 후 정정은 기존 버전을 보존한 채 <b>새 발행 버전</b>으로 남깁니다</li>
-          <li>화면·엑셀·보고서·지도가 <b>하나의 집계 서비스</b>를 사용하므로 어디서 조회해도 같은 숫자가 나옵니다</li>
+          <li>자료는 작성 중 → 제출 → 확정 → 마감 순서로 처리됩니다. 보완이 필요하면 회원사에 수정을 요청하고, 마감 후 정정은 기존 버전을 보존한 채 <b>새 발행 버전</b>으로 남깁니다</li>
+          <li>화면·CSV 내려받기·보고서·지도가 <b>하나의 집계 서비스</b>를 사용해 같은 조건에서 일치하는 숫자를 보여 줍니다</li>
           <li>다른 회원사 자료 요청 차단, 구성 회원사가 3개사 미만인 지역의 합계 비공개, 시·군·구 단위 확대와 월별 재생을 지원하는 지도</li>
         </ul>
         <span class="go">서비스 화면 열기 <svg class="s" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -178,17 +187,17 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:space-
     </div>
 
     <div class="note">
-      <b>검색에는 노출되지 않지만, 주소를 아는 사람은 누구나 열 수 있습니다.</b>
-      <p>모든 페이지에 검색 엔진 노출을 막는 설정(<code>noindex</code>)을 적용했으나 별도의 접근 제한은 없습니다.
+      <b>검색 노출을 제한했지만, 주소를 아는 사람은 누구나 열 수 있습니다.</b>
+      <p>모든 페이지에 검색 엔진에 색인하지 말 것을 요청하는 설정(<code>noindex</code>)을 적용했으나 별도의 접근 제한은 없습니다.
         제안 금액 등 민감한 정보가 포함되어 있으니 <b>협회 내부 관계자에게만</b> 공유해 주시기 바랍니다.</p>
     </div>
 
     <div class="note">
       <b>서비스 화면에 표시되는 회사·공장·인물·통계 수치는 모두 가상의 예시입니다.</b>
-      <p>회원사·공장 정보와 생산·출하·재고 수치는 <b>시연을 위해 만든 가상의 자료</b>이며 실제 회원사와 관계가 없습니다. 화면에 쓰인 사진도 시연용으로 생성한 이미지입니다.
+      <p>회원사·공장 정보와 생산·출하·재고 수치는 <b>가상의 자료</b>이며 실제 회원사와 관계가 없습니다. 화면에 쓰인 사진도 시연용으로 생성한 이미지입니다.
         화면에서 변경한 값과 로그인 상태는 <b>지금 사용 중인 브라우저에만</b> 저장되며, 다른 사람의 화면이나 서버에는 반영되지 않습니다.
         처음 상태로 되돌리려면 로그인 화면의 <b>「체험 데이터 초기화」</b>를 눌러 주세요.
-        로그인에 쓰는 계정은 브라우저 안에서만 동작하는 체험용 계정이며, 메일 발송과 외부 데이터 수집은 화면 흐름만 재현할 뿐 실제로 처리되지 않습니다.</p>
+        로그인에 쓰는 계정은 브라우저 안에서만 동작하는 체험용 계정이며, 이메일 발송과 외부 데이터 수집도 실제로 이루어지지 않습니다.</p>
     </div>
 
     <div class="note">
